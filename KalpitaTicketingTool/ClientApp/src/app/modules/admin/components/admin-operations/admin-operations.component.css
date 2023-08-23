@@ -1,0 +1,87 @@
+.main-form {
+  background-color: var(--bodybg);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    height: 100vh;
+}
+
+.form-bodycolor {
+  background-color: var(--MainBg);
+}
+
+.pd-3 {
+    margin-bottom: 5px;
+}
+
+.add-pd{
+    margin-top: 1.5% !important;
+    margin-bottom: 1.5% !important;
+}
+
+.Submit {
+    padding-top: 3%;
+}
+.select-size{
+    padding: 5px 0px 5px 5px;
+    color: var(--MainTextColor);
+
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+    font-size: 13px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    font-weight: 700;
+    background-color: var( --ClipimgBg);
+    color: var( --labelBody); 
+    padding: 0.5rem 0.3rem; 
+    transition: box-shadow 0.2s;
+  }
+  
+  :host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+    text-align: left;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    padding: 0.2rem 0.2rem!important;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: var( --MainBg);
+  color: var( --MainTextColor); 
+  
+  }  
+  :host ::ng-deep .p-paginator .p-paginator-current {
+    background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 3rem;
+    height: 3rem;
+    margin: 0.143rem;
+    padding: 0 0.5rem;
+    font-size: 13px;
+  }
+  
+  :host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 3rem;
+    height: 3rem;
+    font-size: 12px;
+    margin: 0.143rem;
+    transition: box-shadow 0.2s;
+    border-radius: 50%;
+  }
+  :host ::ng-deep .p-datatable .p-datatable-header {
+    background-color: var( --MainBg);
+  color: var( --MainTextColor); 
+  }
+  /* :host ::ng-deep .form-select {
+    background-color: var(--bodybg);
+    color: var(--labelBody);
+    background-image: url('../../../../../assets/down-arrow-6402.svg');
+     background-size: 20px 20px;
+} */
+:host ::ng-deep option:disabled {
+  color: var(--labelBody)!important;
+} 

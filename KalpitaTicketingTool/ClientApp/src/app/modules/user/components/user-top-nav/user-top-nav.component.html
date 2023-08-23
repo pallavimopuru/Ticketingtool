@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navclass">
+    <div class="container-fluid">
+        <div class="clipstyle">
+            <a class="navbar-brand" routerLink="/admin">
+                <img draggable="false" class="nav-img" src="../../../../../assets/Kalpita_logo.svg" alt="kalpita-logo" />
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="ri-menu-line menu-color"></i></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-10 userhead-column">
+                        <h5 class="text-head">USER DASHBOARD</h5>
+                    </div>
+                    <div class="col-md-2 dropdown-column">
+                    
+                        <div class="dropdown ">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Theme
+                           </button>
+                           <ul class="dropdown-menu menu-cardbody">
+                             <li><a class="dropdown-item" (click)="changeTheme('default')">Kalpita</a></li>
+                             <li><a class="dropdown-item" (click)="changeTheme('dark')">Dark</a></li>
+                             <li><a class="dropdown-item" (click)="changeTheme('light')">Light</a></li>
+                           </ul>
+                         </div>   
+                       </div>
+
+                </div>
+            </div>
+            <div class="d-flex buttonfloat">
+                 <p *ngIf="bool" class="img-circle-text">{{initials}}</p>
+                <p *ngIf="!bool" class="img-circle"><img class="img-size" [src]="photo"></p>
+                <!--<img class="img-size" src="../../../../../assets/Mahantesh-admin.png"><span class="text-insidecircle">GS</span> -->
+                <div class="dropdown">
+
+                    <div class=" dropdown-toggle toggle-padding" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{userName}}
+                    </div>
+
+                    <div class="dropdown-menu dragleftmenu" aria-labelledby="dropdownMenuButton1" *ngIf="this.companydata || this.companydata?.value.length != 0">
+                        <div class="col-md-12">
+                            <div class="card" >
+                                    <p class="card-titles" >{{companydata?.value[0]?.displayName}}</p>
+                                    <div class="row row-gap">
+                                        <div class="col-md-2 py-2 padding-gap mobile-img">
+                                          <p *ngIf="bool" class="img-circle-text">{{initials}}</p>
+                                          <p *ngIf="!bool" class="img-circle"> <img class="img-size" [src]="photo"></p>
+
+                                        </div>
+                                        <div class="col-md-10 py-2 padding-gap">
+                                           <p class="text-sizes"><a class="dropdown-items-name">{{empData.name}}</a></p>
+                                           <p class="text-sizes" title="{{empData.username}}"><a class="dropdown-items-email " >{{empData.username}}</a></p>
+                                        </div>
+                                        <div class="col-md-12 bg-light text-center py-3">
+                                             <a (click)="logout()" class="logoutcolr">LOGOUT</a>
+                                            <!-- <a class="logoutcolr text-center" (click)="logout()">Logout</a> -->
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <!-- <ul class="dropdown-menu dragleftmenu" aria-labelledby="dropdownMenuButton1">
+                        <li class="text-sizes"><a class="dropdown-item text-center">{{empData.name}}</a></li>
+                        <li class="text-sizes"><a class="dropdown-item text-center">{{empData.username}}</a></li>
+
+                        <li class="text-sizes"><a class="dropdown-item logoutcolr text-center" (click)="logout()">Logout</a></li>
+                    </ul>  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

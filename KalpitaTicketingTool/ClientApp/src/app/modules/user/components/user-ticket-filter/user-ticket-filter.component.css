@@ -1,0 +1,35 @@
+.btn-gap{
+    margin-left:3px;
+}
+.btn{
+    --bs-btn-padding-x: 0.15rem;
+    --bs-btn-padding-y: 0.10rem;
+    font-size: 0.8rem;
+    /* width: 46px;*/
+   
+}
+ .btn-custom{
+    color: var( --labelBody);
+    margin-left: 5px; 
+} 
+.btn-customApply{
+    width: 46px;
+    margin-left: -14px;
+}
+.dropdown-toggle::after {
+    color: var( --labelBody);
+}
+.dropdown-menu{
+    --bs-dropdown-min-width: 21rem;
+}
+.form-control{
+    padding: 0.15rem 0.15rem!important;
+    font-size: 0.8rem;
+}
+.dropdown-menu.show{
+    margin: 0rem 0rem 0rem -18rem!important;
+  }
+  .pi-filter-fill:before {
+    content: "\e9e0";
+    font-size: 12px;
+}

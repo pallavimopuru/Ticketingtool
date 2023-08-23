@@ -1,0 +1,85 @@
+<div class="card">
+    <form [formGroup]="AppRoles">
+        <p-table [columns]="columnHeader" [lazy]="true" [loading]="loading" #docDataTable [value]="operations" dataKey="Serialnumber" editMode="row" responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    <!-- <button pButton type="button" label="Add" (click)="addRow()"></button> -->
+                    <button class="btn custom-button" (click)="addRow()">Add</button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                    <th style="text-align:center">
+                        Action
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-operations let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="operations">
+                    <td>
+                        <p-cellEditor class="cellgap">
+                            <ng-template pTemplate="input">
+                                {{ri + 1 }}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ri + 1 }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="roleName" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations.roleName }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="roleLandingPage" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations.roleLandingPage }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="width:15%;">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <select class="form-select" formControlName="status" [(ngModel)]="defaultStatus">
+                                    <!-- <option  value="" selected disabled>Select status</option> -->
+                                    <option *ngFor="let item of statusOptions; let i =index" value={{item.value}}>
+                                        {{item.label}}
+                                    </option>
+                                </select>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations?.status == "A" ? "Active" : "Deactive" }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td style="text-align:center;width:20%;">
+                        <button *ngIf="!editing && alreadyEditIsOpen" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="EditOpen()"></button>
+
+                        <button *ngIf="!editing && !alreadyEditIsOpen" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(operations)" class="p-button-rounded p-button-text"></button>
+
+                        <button *ngIf="editing && this.AppRoles.valid" pButton pRipple type="button" icon="pi pi-check" (click)="onRowEditSave()" pSaveEditableRow class="p-button-rounded p-button-text p-button-success mr-2"></button>
+
+                        <button *ngIf="editing && !this.AppRoles.valid" pButton pRipple type="button" icon="pi pi-check" (click)="onRowEditSave()" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+
+                        <button *ngIf="editing" pButton pRipple type="button" icon="pi pi-times" (click)="onRowEditCancel()" pCancelEditableRow class="p-button-rounded p-button-text p-button-danger"></button>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </form>
+</div>

@@ -1,0 +1,163 @@
+<div class="container-fluid main-form">
+    <div class="row py-2">
+        <div class="col-md-5">
+            <h6 class="pt-3">
+                <a class="backlink" routerLink="/admin/ticket-history"><i class="ri-arrow-left-line ico-font"></i>Back</a>
+            </h6>
+        </div>
+        <div class="col-md-7">
+            <h6 class="pt-3 bold-head">Ticket Details</h6>
+        </div>
+    </div>
+
+    <form class="pb-3" [formGroup]="userform" *ngIf="userform">
+        <div class="container form-bodycolor py-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-paras">
+                        <b>Ticket ID : {{ TicketData?.ticketData?.ticketDupID }}</b>
+                    </p>
+                </div>
+                <div class="col-md-4 gapcol">
+                    <label for="ticketType" class="form-label">Ticket type</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.ticketType }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Department" class="form-label">Department</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.departmentName }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Category" class="form-label">Category</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.categoryName }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="CreatedBy" class="form-label">Created By</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.createdByName }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="raisedFor" class="form-label">Raised For</label><br />
+                    <p class="data-color">
+                        <!-- {{ TicketData?.ticketData?.createdForEmail }} -->
+                        {{ TicketData?.ticketData?.createdForName }}
+                    </p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Title" class="form-label" >Title</label>
+                    <p class="data-color" >{{ TicketData?.ticketData?.ticketTitle }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Priority" class="form-label">Priority</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.priorityType }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="CreatedOn" class="form-label">Created On</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.createdDate }}</p>
+                </div>
+
+                <div class="col-md-4 gapcol" *ngIf="TicketData">
+                    <label for="AttachedImages" class="form-label">Attached Image(s)</label>
+                    <br>
+                    <ul>
+                        <li *ngFor="let image of TicketData?.ticketImages">
+                            <a class="data-color" download={{image?.imageName}} target="_blank"
+                                href="{{DownloadApiURL}}?fileName={{image?.imageName}}">{{image?.imageName}}</a>
+                        </li>
+                    </ul>
+                    <!-- <a class="data-color" download={{TicketData?.ticketImages[0]?.imageName}} target="_blank" href="{{DownloadApiURL}}?fileName={{TicketData?.ticketImages[0]?.imageName}}">{{TicketData?.ticketImages[0]?.imageName}}</a> -->
+                </div>
+
+                <div class="col-md-4 gapcol" >
+                    <label for="Assigntoo" class="form-label">Assign to</label>
+                    <select class="form-select data-color-select"  formControlName="assignedTo">
+            <option value="undefined" disabled selected>Select assign to</option>
+            <option *ngFor="let item of AssignuserId" value={{item?.userEmail}}>
+              {{ item.userName }}
+            </option>
+          </select>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Status" class="form-label">Status</label>
+                    <select class="form-select data-color-select" [disabled]="disabledFields"  formControlName="ticketStatusID">
+            <option value="undefined" disabled selected> Select Status</option>
+            <option value={{item?.ticketStatusID}} *ngFor="let item of ticketStaus">
+              {{ item.ticketStatus }}
+            </option>
+          </select>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="ResolvedBy" class="form-label">Resolved By</label>
+                    <p class="data-color">{{ TicketData?.ticketData?.resolvedBy }}</p>
+                </div>
+                <div class="col-md-8 gapcol">
+                    <label for="exampleFormControlTextarea1" class="form-label">Comment <span style="color: red;">*</span></label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="ticketComment" placeholder="Add your comment"  maxlength="2000" [disabled]="disabledFields" #update></textarea>
+                </div>
+
+                <div class="col-md-12 text-center py-2">
+                    <button type="button" class="update-btn" [disabled]="disabledFields" (click)="updateTicket(this.userform.get('ticketComment').value)">UPDATE</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- ......................Write a comment section.................... -->
+
+    <form class="pb-3" [formGroup]="userformcomment" *ngIf="userformcomment">
+        <div class="container form-bodycolor">
+            <div class="row">
+                <div class="col-md-12 background-comment">
+                    <h6 class="pt-2">WRITE ADDITIONAL COMMENTS</h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 gapcol">
+                        <!-- <label for="exampleFormControlTextarea2" class="form-label">Comment</label> -->
+                        <textarea class="form-control" formControlName="additionalComment" [ngClass]="this.userformcomment.get('additionalComment').value || !isaddSubmit ? 'form-control' : 'form-control'" id="exampleFormControlTextarea2" rows="3" placeholder="Write your comment"
+                        maxlength="2000" #commentMessage [disabled]="disabledFields"></textarea>
+                    </div>
+                    <div class="col-md-2 gapcol">
+                        <button type="button" class="send-btn" [disabled]="disabledFields" (click)="sendTicketComment(commentMessage.value)">
+            SEND <i class="ri-send-plane-2-line send-ico"></i>
+          </button>
+                    </div>
+
+                    <!-- <div class="col-md-12 d-flex flex-row-reverse py-3">
+                    <button type="button" class="send-btn">SEND <i class="ri-send-plane-2-line send-ico"></i></button>
+                </div> -->
+
+                    <div class="col-md-12 py-3 ">
+                        <div class="border-color p-2 comment-scroll">
+                            <div class=" " *ngFor="let item of comments">
+                                <p class="para-comment1" [ngStyle]="{'color': item.ticketColor}">
+                                    {{ item.commentedBy }} at {{ item.date }}
+                                </p>
+                                <p class="para-comment2">{{ item.comment }}</p>
+                            </div>
+
+                            <!-- <div class="p-2">
+                            <p class="para-comment">Name stark <span class="color-grey">at Today,</span> 1:45PM </p>
+                            <p class="para-comment">Okay i will check after some time</p>
+                        </div>
+
+                        <div class="p-2">
+                            <p class="para-comment">Name stark <span class="color-grey">at Today,</span> 1:50PM </p>
+                            <p class="para-comment">Mouse is not woking. Display is not clear.</p>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>

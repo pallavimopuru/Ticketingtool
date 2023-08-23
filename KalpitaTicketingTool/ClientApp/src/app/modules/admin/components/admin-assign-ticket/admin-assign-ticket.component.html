@@ -1,0 +1,349 @@
+<div class="container-fluid main-form pb-5">
+    <!-- <form [formGroup]="ticket" class="py-3">
+        <div class="container form-bodycolor py-2">
+            <div class="row">
+                <div class="col-md-4 gapcol">
+                    <label for="ticketType" class="form-label">Ticket type</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="ticketTypeid"
+                        (change)="changeTicketType($event)">
+                        <option value="">Select ticket type</option>
+                        <option *ngFor="let item of ticketTypes;let i=index" value={{item.ticketTypeID}}>
+                            {{item.ticketType}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Department" class="form-label">Department</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="departmentid"
+                        (change)="changeDepartment($event)">
+                        <option value="" selected>Select department</option>
+                        <option *ngFor="let item of Departments; let i =index" value={{item.departmentID}}>
+                            {{item.departmentName}} </option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Category" class="form-label">Category 
+                    </label>
+                    <select class="form-select" aria-label="Default select example" formControlName="categoryName">
+                        <option value="" selected>Select category</option>
+                        <option *ngFor="let item of categories;let i =index" value={{item.categoryID}}>
+                            {{item.categoryName}}</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-4 gapcol">
+                    <label for="raisedFor" class="form-label">Raised for</label><br />
+                    <input class="form-check-input radiocircle" type="radio" id="SelfRadio" value="self"
+                        formControlName="self" name="raisedFor" (change)="radioSelected($event)" />
+                    <label class="form-check-label customradio" for="SelfRadio">Self</label>
+
+                    <input class="form-check-input radiocircle" type="radio" id="OthersRadio" value="others"
+                        formControlName="self" name="raisedFor" (change)="radioSelected($event)" />
+                    <label class="form-check-label customradio" for="OthersRadio">Others</label>
+                    <span class="mobilegap">
+                        <input type="text" #searchbar formControlName="othersIp" [(ngModel)]="searchInput" class="form-control email-size"
+                            (keyup)="searchInputvalues(searchbar.value)" placeholder="Search Here" />
+                        <ul>
+                            <li *ngFor="let item of searchResult" (click)="showDetails(item)" [hidden]="toggle">
+                                <p> {{item?.userEmail}}</p>
+                            </li>
+                        </ul>
+                        </span>
+                </div>
+                <div class="col-md-4 gapcol">
+                    <label for="Title" class="form-label">Title <span *ngIf="title && title.invalid && title.touched" style="color: red">
+                     *</span></label>
+                    <input type="email" class="form-control" placeholder="Enter title" formControlName="title" maxlength="200"/>
+
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Priority" class="form-label">Priority </label>
+                    <select class="form-select" aria-label="Default select example" formControlName="priority">
+                        <option value="" disabled="Disabled" selected>Select priority</option>
+
+                        <option *ngFor="let item of priorities;let i =index" value={{item.priorityID}}>
+                            {{item.priorityType}}</option>
+                         
+                    </select>
+                </div>
+
+                <div class="col-md-8 gapcol">
+                    <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        placeholder="Add your comment" formControlName="comment"></textarea>
+                </div>
+                <div class="col-md-4 gapcol">
+                    <label for="Assignto" class="form-label">Assign to</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="assignTo"
+                        (change)="changeAssignList($event)">
+                        <option disabled="Disabled" selected>Select assign to</option>
+                        <option *ngFor="let item of userId;let i =index" value={{item.assignlist}}>
+                            {{item.userName}}</option>
+                    </select>
+                </div>
+                <div class="col-md-8 gapcol">
+                    
+                    <label for="inputGroupFile03" class="form-label">Attach Image(s)</label>
+                    <input type="file" class="form-control margin-gap" id="inputGroupFile03" accept="image/*"
+                        formControlName="Image" (change)="onChange($event)" aria-describedby="inputGroupFileAddon03"
+                        aria-label="Upload">
+
+
+                </div>
+                <div class="col-md-12 text-center pb-3 pt-2">
+                    <button type="button" class="submit-btn"
+                        (click)="ticketdata(ticket.value);">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </form>  -->
+ 
+    <div class="row pt-2">
+        <!-- <div class="col-md-12 d-flex justify-content-end ">
+            <span>
+                <span class="gap-button-dynamic"><button type="button" class="dbutton-size" (click)="applyDynamicClassForFontSize('increase-col')">A+</button></span>
+                <span class="gap-button-dynamic"><button type="button" class="dbutton-size" (click)="applyDynamicClassForFontSize('normal-col')">A</button></span>
+                    <span class="gap-button-dynamic"><button type="button" class="dbutton-size" (click)="applyDynamicClassForFontSize('decrease-col')">A-</button></span>
+            </span>
+        </div> -->
+    </div>
+   <form [formGroup]="ticket" class="py-3">
+        <div class="container form-bodycolor py-2">
+            <div class="row">
+                <div class="col-md-4 gapcol">
+                    <label for="ticketType" class="form-label {{dynamicClassNameForFontSize}}">Ticket type <span style="color: red;">*</span></label>
+                    <select class="form-select {{dynamicClassNameForFontSize}}" aria-label="Default select example" formControlName="TicketTypeID"
+                        (change)="changeTicketType($event)">
+                        <option value="" disabled="Disabled" selected>Select ticket type</option>
+                        <option *ngFor="let item of ticketTypes;let i=index" value={{item.ticketTypeID}}>
+                            {{item.ticketType}}</option>
+                    </select>
+
+
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Department" class="form-label {{dynamicClassNameForFontSize}}">Department <span style="color: red;">*</span></label>
+                    <select class="form-select {{dynamicClassNameForFontSize}}" aria-label="Default select example" formControlName="DepartmentID"
+                        (change)="changeDepartment($event)">
+                        <option value="" disabled="Disabled" selected>Select department</option>
+                        <option *ngFor="let item of Departments; let i =index" value={{item.departmentID}}>
+                            {{item.departmentName}} </option>
+                    </select>
+
+
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Category" class="form-label {{dynamicClassNameForFontSize}}">Category <span style="color: red;">*</span></label>
+                    <select class="form-select {{dynamicClassNameForFontSize}}" aria-label="Default select example" formControlName="CategoryID">
+                        <option value="" disabled="Disabled" selected>Select category</option>
+                        <option *ngFor="let item of categories;let i =index" value={{item.categoryID}}>
+                            {{item.categoryName}}</option>
+                    </select>
+
+
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="raisedFor" class="form-label {{dynamicClassNameForFontSize}}">Raised for <span
+                            style="color: red;" *ngIf="self.value == 'others'">*</span></label><br />
+                    <input class="form-check-input radiocircle" type="radio" id="SelfRadio" value="self"
+                        formControlName="self" (change)="radioSelected($event)" selected />
+                    <label class="form-check-label customradio" for="SelfRadio">Self</label>
+
+                    <input class="form-check-input radiocircle" type="radio" id="OthersRadio" value="others"
+                        formControlName="self" (change)="radioSelected($event)" />
+                    <label class="form-check-label customradio" for="OthersRadio">Others</label>
+                    <span class="mobilegap" *ngIf="self.value == 'others'">
+
+                        <input type="text" #searchbar formControlName="CreatedForEmail" [(ngModel)]="searchInput"
+                            class="form-control email-size" (keyup)="searchInputvalues(searchbar.value)"
+                            placeholder="Search here" />
+                        <ul class="list-position">
+                            <li *ngFor="let item of searchResult" (click)="showDetails(item)" [hidden]="toggle">
+                                <p> {{item?.userEmail}}</p>
+                            </li>
+                        </ul>
+
+                    </span>
+                </div>
+                <div class="col-md-4 gapcol">
+                    <label for="Title" class="form-label {{dynamicClassNameForFontSize}}">Title <span style="color: red;">*</span></label>
+                    <input type="email" class="form-control {{dynamicClassNameForFontSize}}" placeholder="Enter title" formControlName="TicketTitle"
+                        maxlength="200" />
+
+                </div>
+
+                <div class="col-md-4 gapcol">
+                    <label for="Priority" class="form-label {{dynamicClassNameForFontSize}}">Priority <span style="color: red;">*</span></label>
+                    <select class="form-select {{dynamicClassNameForFontSize}}" aria-label="Default select example" formControlName="PriorityID">
+                        <option value="" disabled="Disabled" selected>Select priority</option>
+
+                        <option *ngFor="let item of priorities;let i =index" value={{item.priorityID}}>
+                            {{item.priorityType}}</option>
+
+                    </select>
+
+
+                </div>
+
+                <div class="col-md-8 gapcol">
+                    <label for="exampleFormControlTextarea1" class="form-label {{dynamicClassNameForFontSize}}">Comment <span
+                            style="color: red;">*</span></label>
+                 <textarea class="form-control {{dynamicClassNameForFontSize}}" id="exampleFormControlTextarea1" formControlName="TicketComment"
+                            rows="3" placeholder="Add your comment"  maxlength="2000">
+
+                    </textarea>
+                
+
+                </div>
+
+                <div class="col-md-4 gapcol" *ngIf="assignToLoad">
+                    <label for="Assignto" class="form-label {{dynamicClassNameForFontSize}}">Assign to  <span
+                        style="color: red;">*</span></label>
+                    <select class="form-select {{dynamicClassNameForFontSize}}" aria-label="Default select example" formControlName="AssignedToEmail"
+                        >
+                        <option value="" disabled="Disabled" selected>Select assign to</option>
+                        <option *ngFor="let item of assignValue;" value={{item.userEmail}}>
+                            {{item.userName}}</option>
+                    </select>
+                </div>
+                <div class="col-md-8 gapcol">
+                   
+                    <label for="inputGroupFile03" class="form-label {{dynamicClassNameForFontSize}}">Attach Image(s)</label>
+                    <!-- <input type="file" class="form-control margin-gap" id="inputGroupFile03" accept="image/*" multiple
+                        formControlName="ImageAttachments" (change)="onChange($event)"
+                        aria-describedby="inputGroupFileAddon03" aria-label="Upload"> -->
+
+                        <div class="input-group mb-3">
+                            <input type="file"   class="form-control margin-gap {{dynamicClassNameForFontSize}}" id="inputGroupFile03" 
+                    accept="image/*"  
+                        formControlName="ImageAttachments" (change)="onChange($event)"
+                        aria-describedby="inputGroupFileAddon03" aria-label="Upload" multiple>
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary {{dynamicClassNameForFontSize}}" (click)="imageClear()" type="button">Clear</button>
+                            </div>
+                          </div>
+
+                </div>
+
+                <div class="col-md-12 text-center pb-2 pt-2">
+                    <button type="button" class="submit-btn {{dynamicClassNameForFontSize}}"
+                        (click)="ticketdata(ticket.value);">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </form> 
+
+    <!-- ...................................Table starts here................................... -->
+
+    <div class="container containercolor cont-scroll">
+        <div class="row pt-2">
+            <h5 class="recenthead-color py-2">Recent Tickets</h5>
+            <div class="col-md-12 pb-3">
+                <!-- <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="tablehead">
+                            <th scope="col">Ticket ID</th>
+                            <th scope="col">Created By</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Created On</th>
+                            <th scope="col">Priority</th>
+                            <th scope="col">Assigned To</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Resolved By</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="tablebody">
+                        <tr *ngFor="let item of tickets">
+                            <td>{{item.ticketID}}</td>
+                            <td>{{item.createdByName}}</td>
+                            <td>{{item.categoryName}}</td>
+                            <td>{{item.ticketTitle}}</td>
+                            <td>{{item.createdDate}}</td>
+                            <td>{{item.priorityType}}</td>
+                            <td>{{item.assignedTo}}</td>
+                            <td>{{item.ticketStatus}}</td>
+                            <td>{{item.resolvedBy}}</td>
+
+                        </tr>
+                    </tbody>
+                </table> -->
+
+                <p-table [value]="tickets" #tableData [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                responsiveLayout="scroll" [globalFilterFields]="['ticketTitle','ticketStatus']">
+
+                <ng-template pTemplate="header">
+
+                    <tr class="tablehead">
+                        <!-- <th scope="col"><i class="ri-arrow-up-fill icoup"></i> Ticket ID</th> -->
+                        <th style="width: 8%;" pSortableColumn="ticketID" scope="col">Ticket ID <p-sortIcon
+                                field="ticketID"></p-sortIcon>
+                        </th>
+                        <th style="width: 14%;" pSortableColumn="createdByName" scope="col">Created By
+                            <p-sortIcon field="createdByName"></p-sortIcon>
+                        </th>
+                        <th style="width: 9%;" pSortableColumn="categoryName" scope="col">Category <p-sortIcon
+                                field="categoryName"></p-sortIcon>
+                        </th>
+                        <th style="width: 19%;" pSortableColumn="ticketTitle" scope="col">Title <p-sortIcon
+                                field="ticketTitle"></p-sortIcon>
+                        </th>
+                        <!-- <th scope="col"><i class="ri-arrow-up-fill"></i> Created On</th> -->
+                        <th style="width: 10%;" pSortableColumn="createdDate" scope="col">Created On <p-sortIcon
+                                field="createdDate"></p-sortIcon>
+                        </th>
+                        <th style="width: 8%;" pSortableColumn="priorityType" scope="col">Priority <p-sortIcon
+                                field="priorityType"></p-sortIcon>
+                        </th>
+                        <th style="width: 13%;" pSortableColumn="assignedTo" scope="col">Assigned To <p-sortIcon
+                                field="assignedTo"></p-sortIcon>
+                        </th>
+                        <th style="width: 8%;" pSortableColumn="ticketStatus" scope="col">Status <p-sortIcon
+                                field="ticketStatus"></p-sortIcon>
+                        </th>
+                        <!-- <th style="width: 10%;" pSortableColumn="resolvedBy" scope="col">Resolved By <p-sortIcon
+                                field="resolvedBy"></p-sortIcon>
+                        </th> -->
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <!-- <td>{{item.ticketDupID}}</td>
+                        <td>{{item.createdByName}}</td>
+                        <td>{{item.categoryName}}</td>
+                        <td>{{item.ticketTitle }}</td>
+                        <td>{{item.createdDate}}</td>
+                        <td>{{item.priorityType}}</td>
+                        <td>{{item.assignedTo}}</td>
+                        <td>{{item.ticketStatus}}</td> -->
+                        <!-- <td>{{item.resolvedBy}}</td> -->
+
+
+
+
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.ticketDupID}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.createdByName}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.categoryName}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.ticketTitle }}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.createdDate}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.priorityType}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.assignedTo}}</td>
+                        <td class="{{dynamicClassNameForFontSize}}">{{item.ticketStatus}}</td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+        </div>
+    </div>
+</div>

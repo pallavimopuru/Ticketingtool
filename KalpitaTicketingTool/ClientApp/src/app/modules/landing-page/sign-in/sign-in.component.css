@@ -1,0 +1,141 @@
+
+.body-backgroundcolor{
+    background-color: black;
+}
+.padding-img{
+    padding: 18rem 0rem 0rem 0rem;
+}
+.button-padding{
+    padding: 4rem 0rem 0rem 0rem; 
+}
+.img-login{
+   height: 800px;
+   width: 100%;
+    
+}  
+.signin-btn{
+    width: 400px; 
+   background-color: #fa7107;
+   color: white;
+   border: none;
+   padding: 10px;
+   font-size: 20px;
+  }
+  .container{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .desktop-display{
+    display: block;
+  }
+  .mobile-display{
+    display: none;
+  }
+  @media only screen and (min-width: 250px) and (max-width: 600px) {
+    .desktop-display{
+        display: none;
+      }
+      .mobile-display{
+        display: block!important;
+      }
+      .padding-img{
+        padding: 4rem 0rem 2rem 0rem;
+    }
+    .body-backgroundcolor{
+     background-color: unset;
+    }
+    .signin-btn{
+        width: 100px; 
+    }
+    
+    .button-padding{
+        padding: 3rem 0rem 4rem 0rem;
+    }
+  }
+  @media only screen and (min-width: 600px) and (max-width: 800px) {
+    .desktop-display{
+        display: none;
+      }
+      .mobile-display{
+        display: block!important;
+      }
+      .padding-img{
+        padding: 2rem 0rem 0rem 0rem;
+    }
+    .body-backgroundcolor{
+     background-color: unset;
+    }
+    .signin-btn{
+        width: 300px; 
+    }
+    
+    .button-padding{
+        padding: 2rem 0rem 2rem 0rem;
+    }
+  }
+  @media only screen and (min-width: 800px) and (max-width: 1000px) {
+    .desktop-display{
+        display: none;
+      }
+      .mobile-display{
+        display: block!important;
+      }
+      .body-backgroundcolor{
+        background-color: unset;
+       }
+    .padding-img {
+        padding: 6rem 0rem 0rem 0rem;
+    }
+    .button-padding{
+        padding: 5rem 0rem 4rem 0rem;
+    }
+    .signin-btn{
+        width: 350px;
+    }
+  }
+  @media only screen and (min-width: 1001px) and (max-width: 1100px) {
+    .img-login{
+        height: 600px;        
+     }
+  }
+  @media only screen and (min-width: 1100px) and (max-width: 1400px) {
+    .img-login{
+        height: 800px;        
+     }
+  }
+  @media only screen and (min-width: 1401px) and (max-width: 1590px) {
+    .img-login{
+        height: 900px;        
+     }
+  }
+  
+  @media only screen and (min-width: 1601px) and (max-width: 1750px) {
+   
+    .img-login{
+        height: 1050px;        
+     }
+  }
+  @media only screen and (min-width: 1751px) and (max-width: 1800px) {
+    .padding-img {
+        padding: 25rem 0rem 0rem 0rem;
+    }
+    .img-login{
+        height: 1120px;        
+     }
+  }
+  @media only screen and (min-width: 1801px) and (max-width: 2000px) {
+    .padding-img{
+        padding: 23rem 0rem 0rem 0rem;
+    }
+    .img-login{
+        height: 1080px;        
+     }
+  }
+  @media only screen and (min-width: 2001px) and (max-width: 2600px) {
+    .padding-img{
+        padding: 30rem 0rem 0rem 0rem;
+    }
+    .img-login{
+        height: 1440px;        
+     }
+  }

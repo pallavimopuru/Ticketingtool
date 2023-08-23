@@ -1,0 +1,181 @@
+<div class="container-fluid main-form">
+    <div class="tablestart py-3">
+        <div class="container containercolor cont-scroll">
+            <div class="row pt-2">
+                <div class="col1">
+                    <h6 class="alltickets">All Tickets</h6>
+                </div>
+                <div class="col2">
+                    <span class="fromTofont">From : </span>
+
+                    <p-calendar [(ngModel)]="startdate" [defaultDate]='defaultDate' [maxDate]="defaultDate"
+                        [readonlyInput]="true" placeholder="mm/dd/yyyy" dateFormat="mm/dd/yy" inputId="dateformat">
+                    </p-calendar>
+                </div>
+                <div class="col3">
+                    <span class="fromTofont">To : </span>
+
+                    <p-calendar class="todatecalendar" [readonlyInput]="true" [(ngModel)]="enddate"
+                        [defaultDate]='defaultDate' [maxDate]="defaultDate" placeholder="mm/dd/yyyy"
+                        dateFormat="mm/dd/yy" inputId="dateformat"></p-calendar>
+                </div>
+                <div class="col4">
+                    <button type="button" class="export-btn widthinput" (click)="exportValue(startdate,enddate)">
+                        EXPORT
+                    </button>
+                </div>
+
+                <!-- <div class="col5">
+                    <input type="search" pInputText size="50" class="form-control searchwidth"
+                        placeholder="Global search" #textInput type="text"
+                        (input)="tableData.filterGlobal(textInput.value, 'startsWith')">
+                </div> -->
+                <div class="col5">
+                    <input type="search" pInputText size="50" class="form-control searchwidth"
+                        placeholder="Global search" #textInput type="text"
+                        (keydown.enter)="callDataGlobally(textInput.value)" (keydown.delete)="callDataGlobally(null)"
+                        (keyup.backspace)="callDataGlobally(textInput.value)">
+                </div>
+            </div>
+            <div class="row py-3">
+                <div class="col-md-12">
+
+                    <p-table [value]="tickets" #tableData [paginator]="true" [rows]="searchQueryGrid.defaultPageSize"
+                        [showCurrentPageReport]="true" [totalRecords]="searchQueryGrid.totalRowCount"
+                        [first]="searchQueryGrid.offset" [lazy]="true" (onPage)="paginate($event)" [pageLinkSize]="3"
+                        [globalFilterFields]="['ticketTitle','ticketStatus','createdByName', 'departmentName','createdDate','priorityType','assignedTo','categoryName','ticketID']">
+                        <ng-template pTemplate="header">
+                            <tr class="tablehead">
+                                <!-- <th scope="col"><i class="ri-arrow-up-fill icoup"></i> Ticket ID</th> -->
+                                <th style="width: 8%;" #ticketId pSortableColumn="ticketID" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="ticketID" (click)="getSortColumnName(ticketId.innerText)">TicketID<p-sortIcon field="ticketID" (click)="getSortColumnName(ticketId.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- TicketID
+                                    <p-sortIcon field="ticketID" (click)="getSortColumnName(ticketId.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 15%;" #createdby pSortableColumn="createdByName" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="createdByName" (click)="getSortColumnName(createdby.innerText)">CreatedBy<p-sortIcon field="createdByName" (click)="getSortColumnName(createdby.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- CreatedBy
+                                    <p-sortIcon field="createdByName" (click)="getSortColumnName(createdby.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #departmentName pSortableColumn="departmentName" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="departmentName" (click)="getSortColumnName(departmentName.innerText)">Department<p-sortIcon field="departmentName" (click)="getSortColumnName(departmentName.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- CreatedBy
+                                    <p-sortIcon field="createdByName" (click)="getSortColumnName(createdby.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #category pSortableColumn="categoryName" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="categoryName" (click)="getSortColumnName(category.innerText)">Category<p-sortIcon field="categoryName" (click)="getSortColumnName(category.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- Category
+                                    <p-sortIcon field="categoryName" (click)="getSortColumnName(category.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 15%;" #title pSortableColumn="ticketTitle" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="ticketTitle" (click)="getSortColumnName(title.innerText)"> Title<p-sortIcon field="ticketTitle" (click)="getSortColumnName(title.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- Title
+                                    <p-sortIcon field="ticketTitle" (click)="getSortColumnName(title.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <!-- <th scope="col"><i class="ri-arrow-up-fill"></i> Created On</th> -->
+                                <th style="width: 10%;" #createdon pSortableColumn="createdDate" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="createdDate" (click)="getSortColumnName(createdon.innerText)">CreatedOn<p-sortIcon field="createdDate" (click)="getSortColumnName(createdon.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- CreatedOn
+                                    <p-sortIcon field="createdDate" (click)="getSortColumnName(createdon.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #priority scope="col">
+                                    <div class="statusCol">
+                                        <p class="margin-gap" pSortableColumn="priorityType">
+                                            <span (click)="getSortColumnName(priority.innerText)" field="priorityType">Priority<p-sortIcon (click)="getSortColumnName(priority.innerText)" field="priorityType"></p-sortIcon></span>
+                                        </p>
+                                        <p class="margin-gap">
+                                        <app-admin-ticket-filter class="filterClass"
+                                        (filterData)="getData($event, priority.innerText)"
+                                        (clearFilterEmitter)="clearFilter($event, priority.innerText)">
+                                    </app-admin-ticket-filter>
+                                </p>
+                                 </div>
+
+                                    <!-- <div class="statusCol">Priority <span pSortableColumn="priorityType">
+                                            <p-sortIcon field="priorityType"
+                                                (click)="getSortColumnName(priority.innerText)"></p-sortIcon>
+                                        </span>
+                                        <app-admin-ticket-filter class="filterClass"
+                                            (filterData)="getData($event, priority.innerText)"
+                                            (clearFilterEmitter)="clearFilter($event, priority.innerText)">
+                                        </app-admin-ticket-filter>
+                                    </div> -->
+                                </th>
+                                <th style="width: 10%;" #assignedto scope="col" pSortableColumn="assignedTo">
+                                    <p class="margin-gap">
+                                        <span field="assignedTo" (click)="getSortColumnName(assignedto.innerText)">AssignedTo<p-sortIcon field="assignedTo" (click)="getSortColumnName(assignedto.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- AssignedTo
+                                    <p-sortIcon field="assignedTo" (click)="getSortColumnName(assignedto.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #status scope="col">
+                                    <div class="statusCol">
+                                        <p class="margin-gap" pSortableColumn="ticketStatus">
+                                            <span (click)="getSortColumnName(status.innerText)" field="ticketStatus">Status<p-sortIcon (click)="getSortColumnName(status.innerText)" field="ticketStatus"></p-sortIcon></span>
+                                        </p>
+                                        <p class="margin-gap">
+                                            <app-admin-ticket-filter class="filterClass"
+                                            (filterData)="getData($event, status.innerText)"
+                                            (clearFilterEmitter)="clearFilter($event, status.innerText)">
+                                        </app-admin-ticket-filter>
+                                </p>
+                                    </div>
+                                    <!-- <div class="statusCol">Status <span pSortableColumn="ticketStatus">
+                                            <p-sortIcon field="ticketStatus"
+                                                (click)="getSortColumnName(status.innerText)"></p-sortIcon>
+                                        </span>
+                                        <app-admin-ticket-filter class="filterClass"
+                                            (filterData)="getData($event, status.innerText)"
+                                            (clearFilterEmitter)="clearFilter($event, status.innerText)">
+                                        </app-admin-ticket-filter>
+                                    </div> -->
+                                </th>
+                                <!-- <th style="width: 10%;" pSortableColumn="resolvedBy" scope="col">Resolved By
+                                    <p-sortIcon field="resolvedBy"></p-sortIcon>
+                                </th> -->
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td class="ticketId"><a
+                                        routerLink="/admin/ticket-history/{{item.ticketID}}">{{item.ticketDupID}}</a>
+                                </td>
+                                <td>{{item.createdByName}}</td>
+                                <td>{{item.departmentName}}</td>
+                                <td>{{item.categoryName}}</td>
+                                <td>{{item.ticketTitle }}</td>
+                                <td>{{item.createdDate}}</td>
+                                <td>{{item.priorityType}}</td>
+                                <td>{{item.assignedTo}}</td>
+                                <td>{{item.ticketStatus}}</td>
+                                <!-- <td>{{item.resolvedBy}}</td> -->
+                            </tr>
+
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <!-- <pagination-controls (pageChange)="p = $event" class="text-center paging-textsize"></pagination-controls> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.custom-button{
+    background-color: var(--bgNavitem);
+    color: var( --MainTextColor);
+    padding: 0.50rem 1.25rem;
+    font-weight: 600;
+}
+ .btn:first-child:hover, :not(.btn-check)+.btn:hover {
+     background-color: var(--ClipimgBg);
+    color: var(--textBody); 
+    border-color: var(--textBody);
+} 
+:host ::ng-deep .p-button{
+    padding: 0.50rem 1.25rem;
+ }
+:host ::ng-deep .p-inputtext {
+    padding: 0.25rem 0.75rem;
+}
+.cellgap{
+    padding-left:10px!important;
+}
+

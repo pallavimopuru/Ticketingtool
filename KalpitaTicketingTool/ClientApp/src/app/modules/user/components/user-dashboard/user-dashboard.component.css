@@ -1,0 +1,164 @@
+ .main-containerbody{
+  background-color: var(--bodybg);
+   /* height:100vh;  */
+
+ }
+ .card{
+  background-color: var(--MainBg);
+  color: var( --MainTextColor);
+}
+ .column-card{
+    width:20%;
+    padding-top: 10px;
+ }
+ .column-width-1{
+width: 15%;
+}
+.column-width-2{
+    width: 10%;
+}
+.column-width-3{
+  width:75%;
+  display:flex;
+  justify-content: flex-end;
+
+
+}
+.policy-main{
+    display: flex;
+    justify-content: flex-end;
+}
+.graphhead-text{
+  color: var(--MainTextColor);
+    font-weight: 600;
+}
+.link-underline{
+  text-decoration: none;
+}
+
+.form-label{
+  color: var(--labelBody);
+}
+.form-select {
+   background-color: var(--bodybg);
+  color: var(--labelBody);
+  background-image: url('../../../../../assets/down-arrow-6402.svg');
+  background-size: 22px 25px;
+}
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+     .main-containerbody{
+         height: unset;
+     } 
+    
+     .column-width-1{
+        width: 60%;
+    }
+    .column-width-2{
+        width: 40%;
+    }
+    .policy-main {
+        display: unset;
+
+    }
+    .column-card{
+        width: 100%;
+    }
+    .mobile-col{
+     width: 40%;
+    }
+    .mobile-col2{
+      width: 60%;
+      padding: 15px 0px 0px 0px;
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+  .main-containerbody{
+    height:100vh;  
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 1100px) {
+    .column-card{
+        width: 50%;
+    }
+    .mobile-col2{
+        padding: 15px 0px 0px 0px;
+      }
+      .column-width-1{
+        width: 30%;
+    }
+    .column-width-2{
+        width: 30%;
+    }
+      .policy-main{
+        width: 38%;
+      }
+      
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1300px) {
+  .chart-gap{
+    padding-bottom: 4rem;
+  }
+}
+@media only screen and (min-width: 1300px) and (max-width: 1400px) {
+  .chart-gap{
+    padding-bottom: 3rem;
+  }
+  .main-containerbody{
+    height: 100vh;
+} 
+
+}
+@media only screen and (min-width: 1400px) and (max-width: 1450px) {
+  .chart-gap{
+    padding-bottom: 2rem!important;
+  }
+}
+@media only screen and (min-width: 1100px) and (max-width: 1300px) {
+    .column-card{
+        width: 33.333333%;
+    }
+    .mobile-col2{
+        padding: 15px 0px 0px 0px;
+      }
+      .ticket-text{
+        font-size: 1.5rem;
+      }
+}
+@media only screen and (min-width: 1500px) and (max-width: 1590px) {
+  .chart-gap{
+    padding-bottom: 10px!important;
+  }
+}
+@media only screen and (min-width: 1300px) and (max-width: 1590px) {
+  .column-card{
+      width: 20%;
+  }
+  .mobile-col2{
+      padding: 10px 0px 0px 0px;
+    }
+    .ticket-text{
+      font-size: 15px;
+    }
+    .column-width-1{
+      width: 18%;
+    }
+    .ticket-number{
+      font-size: 18px;
+    }
+    .mobile-col{
+      padding-top: 10px!important;
+    }
+}
+
+@media only screen and (min-width: 1601px) and (max-width: 2560px) {
+  .padding-gapbottom{
+    padding-bottom: 6px;
+   }
+}
+@media only screen and (min-width: 1370px) and (max-width: 2560px) {
+  .main-containerbody{
+     height:100vh;   
+   }
+  
+}

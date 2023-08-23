@@ -1,0 +1,153 @@
+.main-form{
+    background-color: var(--bodybg);
+     /* height:fit-content; */
+     /* height: 100vh;  */
+}
+::placeholder { 
+    color: var( --labelBody); 
+    opacity: 1; 
+  }
+  
+.ico-font{
+    font-size: 15px;
+    font-weight: 600;
+    padding-right: 5px;
+}
+.form-label{
+    color: var( --MainTextColor);
+    font-weight: 600;
+  }
+  .form-check-label {
+    color: var( --MainTextColor);
+  }
+  .recenthead-color{
+    font-weight: 600;
+    color: var( --MainTextColor);
+  }
+  .form-select{
+    /* background-color: var(--bodybg);
+     color:  var( --labelBody);   */
+     background-color: var(--bodybg);
+     color: var( --labelBody);
+    background-image: url('../../../../../assets/down-arrow-6402.svg');
+    background-size: 22px 25px;
+  }
+  .form-control{
+    background-color: var(--bodybg);
+    color:  var( --labelBody);
+  }
+  .text-paras{
+    color: var( --MainTextColor);
+  }
+.comment-scroll{
+    overflow-x: auto;
+    height: 200px;
+    background-color: var(--bodybg);
+    color:  var( --labelBody);
+}
+.backlink{
+    text-decoration: none;
+    color:  var( --labelBody);
+    font-size: 19px;
+}
+.form-bodycolor{
+    background-color: var(--MainBg);
+}
+ p{
+    margin-bottom: 0.1rem;
+} 
+.para-comment1 {
+    padding: 0.1rem 0.5rem 0rem 0.5rem;
+    font-size: 14px;
+}
+.para-comment2 {
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
+    font-size: 14px;
+}
+.customradio{
+    padding: 0px 15px 0px 5px;
+}
+.gapcol{
+    padding: 0.5rem 0.6rem;
+}
+.radiocircle{
+    margin-top: 10px;
+}
+.email-size{
+    width: 62%;
+    display: unset;
+}
+.data-color {
+    color: var( --MainTextColor);
+} 
+.data-color-select{
+  color: var( --MainTextColor);
+}
+   .color-grey{
+    color: grey;
+}
+.border-color{
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+}
+   .background-comment{
+    /* background-color: #026197;
+    color: white; */
+    background-color: var(--MainBg);
+    color: var( --MainTextColor);
+   }
+.send-btn{
+  background-color: var(--bgNavitem);
+  color: var( --MainTextColor);
+    border: none;
+    padding: 10px 20px; 
+    width: fit-content;
+    font-size: 18px; 
+    border-radius: .375rem;
+}
+.reopen-btn{
+     width: 400px;  
+     background-color: var(--bgNavitem);
+    color: var( --MainTextColor);
+    border: none;
+    padding: 10px;
+    border-radius: .375rem;  
+}
+.send-ico{
+    font-size: 15px;
+}
+.bold-head{
+    font-weight: 600;
+    color:  var( --labelBody);
+}
+
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+   .update-btn, .reopen-btn{
+    width: 150px;
+   }
+   .flex-row-reverse {
+    flex-direction: row!important;
+} 
+.para-comment1{
+    margin-bottom: 0.1rem;
+}
+.para-comment2{
+    margin-bottom: 0.2rem;
+}
+.main-form{
+    height:fit-content; 
+}
+}
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+  .main-form {
+  height: 100vh;   
+}  
+}
+  @media only screen and (min-width: 1601px) and (max-width: 2600px) {
+    .main-form {
+    height: 100vh;   
+}  
+}
+  
+  
+  

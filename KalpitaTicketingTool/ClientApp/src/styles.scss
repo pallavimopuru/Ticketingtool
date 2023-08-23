@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+// :root {
+//     --primaryColor: hsl(185, 57%, 35%);
+//     --secondaryColor: hsl(0, 0%, 22%);
+//     --textOnPrimary: hsl(0, 0%, 100%);
+//     --textOnSecondary: hsl(0, 0%, 90%);
+//     --background: hsl(0, 0%, 100%);
+//     --background: "hsl(0, 0%, 100%)",
+//     --navbackground: "#026197"
+//   }
+
+:root{
+    --MainBg: #006097;
+    --exportBtn: #198754;
+      --MainTextColor: white;
+      // --ClipimgBg: #d4edf3;
+      --ClipimgBg: white;
+      --bgNavitem: #fa7107;
+      --bodybg: white;
+    // --bodybg: #d4edf3;
+      --cardBg: white;
+      --tableHead: #006097;
+      --textBody: black;
+      --labelBody: black;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

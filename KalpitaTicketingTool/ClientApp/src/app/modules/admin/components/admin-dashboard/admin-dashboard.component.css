@@ -1,0 +1,133 @@
+.main-form{
+    background-color: var(--bodybg);
+ }
+    .card{
+    background-color: var(--MainBg);
+    color: var( --MainTextColor);
+}
+.piechart-padding{
+    padding-bottom: 3.3rem;
+}
+ .column-card{
+    width:20%;
+    padding-top: 10px;
+ }
+ .customrow{
+  display: flex;
+  justify-content: flex-end;
+ }
+ .column-width-1{
+width: 15%;
+}
+.column-width-2{
+    width: 10%;
+}
+.policy-main{
+    display: flex;
+    justify-content: flex-end;
+}
+.graphhead-text{
+    color: var(--MainTextColor);
+    font-weight: 600;
+}
+.form-label{
+     color: var(--labelBody); 
+}
+.form-label2{
+    color: var(--MainTextColor);
+}
+.form-select {
+     background-color: var(--bodybg);
+    color: var(--labelBody);
+    background-image: url('../../../../../assets/down-arrow-6402.svg');
+    background-size: 22px 25px;
+}
+.noDataCol2{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 2rem;
+}
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+    .main-form{
+        height: unset;
+     }
+     .piechart-padding{
+        padding-bottom: 0rem;
+    }
+     .column-width-1{
+        width: 60%;
+    }
+    .column-width-2{
+        width: 40%;
+    }
+    .policy-main {
+        display: unset;
+
+    }
+    .column-card{
+        width: 100%;
+    }
+    .mobile-col{
+     width: 40%;
+    }
+    .mobile-col2{
+      width: 60%;
+      padding: 15px 0px 0px 0px;
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 1100px) {
+    .column-card{
+        width: 50%;
+    }
+    .mobile-col2{
+        padding: 15px 0px 0px 0px;
+      }
+      .column-width-1{
+        width: 30%;
+    }
+    .column-width-2{
+        width: 30%;
+    }
+      .policy-main{
+        width: 38%;
+      }
+}
+@media only screen and (min-width: 1100px) and (max-width: 1300px) {
+    .column-card{
+        width: 33.333333%;
+    }
+    .mobile-col2{
+        padding: 15px 0px 0px 0px;
+      }
+      .ticket-text{
+        font-size: 1.5rem;
+      }
+      .column-width-1{
+        width: 18%;
+      }
+}
+@media only screen and (min-width: 1300px) and (max-width: 1590px) {
+    .column-card{
+        width: 20%;
+    }
+    .mobile-col2{
+        padding: 10px 0px 0px 0px;
+      }
+      .ticket-text{
+        font-size: 15px;
+      }
+      .column-width-1{
+        width: 18%;
+      }
+      .ticket-number{
+        font-size: 18px;
+      }
+      .mobile-col{
+        padding-top: 10px!important;
+      }
+}
+@media only screen and (min-width: 2000px) and (max-width: 2600px) {
+    .main-form{
+        height: 100vh;
+     }
+}

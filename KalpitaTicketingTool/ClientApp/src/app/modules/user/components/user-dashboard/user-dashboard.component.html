@@ -1,0 +1,181 @@
+<div class="container-fluid main-containerbody">
+    <div class="container py-2">
+        <form>
+            <div class="row py-2">
+                <div class="column-width-1 pt-2">
+                    <label for="Department" class="form-label">Filter By Department</label>
+                </div>
+
+                <div class="column-width-2">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="departmentSelectBox" (change)="onOptionsSelected($event)" [ngModelOptions]="{standalone: true}">
+            <option value="undefined" disabled>Select Departments</option>
+
+            <option *ngFor="let item of UserDepartments; let i = index" value="{{item.departmentID}}">
+              {{ item.departmentName }}
+            </option>
+          </select>
+                </div>
+
+                <div class="col-md-8 policy-main">
+                    <a href="https://app.hrone.cloud/app/myprofile/policies" target="_blank" class="policylink">Policy Link</a>
+                </div>
+                <!-- Button trigger modal -->
+                <!-- <div class="column-width-3 float-end">
+        <button
+          type="button"
+          class="btn btn-primary button-cls"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Policy Link
+        </button>
+      </div> -->
+
+                <!-- Modal -->
+                <!-- <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{name}}</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <li><a href="../../../../../assets/policies/Employment of relatives policy.pdf" class="link-underline" target="_blank">Employment of relatives policy</a></li>
+                <li><a href="../../../../../assets/policies/Laptop Usage  Policy.pdf" class="link-underline">Laptop Usage  Policy</a></li>
+                <li><a href="../../../../../assets/policies/Retirement Policy.pdf" class="link-underline">Retirement Policy</a></li>
+                <li><a href="../../../../../assets/policies/Time Away From Work Policy.pdf" class="link-underline">Time Away From Work Policy</a></li> -->
+                <!-- <li *ngFor="let item of filtered;let i =index" value={{item.FilePath}}><a href="{{item.FilePath}}"
+                  >{{item.displayName}}</a></li>
+
+              </div>
+               <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+            </div>
+        </form>
+
+        <div class="row">
+            <!-- Card 1..................................................... -->
+            <div class="column-card">
+                <div class="card">
+                    <div class="row p-2">
+                        <div class="col-md-4 pt-1 mobile-col">
+                            <img src="../../../../../assets/total-tickets.svg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-8 mobile-col2">
+                            <h3 class="ticket-number">{{ ticketStatusCountObject.Total_Tickets }}</h3>
+                            <h6 class="ticket-text">Total Tickets</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2.............................................. -->
+            <div class="column-card">
+                <div class="card">
+                    <div class="row p-2">
+                        <div class="col-md-4 pt-1 mobile-col">
+                            <img src="../../../../../assets/resolved-tickets.svg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-8 mobile-col2">
+                            <h3 class="ticket-number">{{ ticketStatusCountObject.Resolved }}</h3>
+                            <h6 class="ticket-text">Resolved Tickets</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3.............................................. -->
+            <div class="column-card">
+                <div class="card">
+                    <div class="row p-2">
+                        <div class="col-md-4 pt-1 mobile-col">
+                            <img src="../../../../../assets/reopened-tickets.svg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-8 mobile-col2">
+                            <h3 class="ticket-number">{{ ticketStatusCountObject.Reopened }}</h3>
+                            <h6 class="ticket-text">Reopened Tickets</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4.............................................. -->
+            <div class="column-card">
+                <div class="card">
+                    <div class="row p-2">
+                        <div class="col-md-4 pt-1 mobile-col">
+                            <img src="../../../../../assets/open-tickets.svg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-8 mobile-col2">
+                            <h3 class="ticket-number">{{ ticketStatusCountObject.Open }}</h3>
+                            <h6 class="ticket-text">Open Tickets</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5.............................................. -->
+            <div class="column-card">
+                <div class="card">
+                    <div class="row p-2">
+                        <div class="col-md-4 pt-1 mobile-col">
+                            <img src="../../../../../assets/in-progressticket.svg" class="img-fluid" />
+                        </div>
+                        <div class="col-md-8 mobile-col2">
+                            <h3 class="ticket-number">{{ ticketStatusCountObject.In_Progress }}</h3>
+                            <h6 class="ticket-text">In Progress Tickets</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- .......................................Chart Section............................................... -->
+    <div class="container">
+        <div class="row pb-3">
+            <div class="col-md-6 pt-3">
+                <div class="card p-2">
+                    <h5 class="graphhead-text">By Ticket Type</h5>
+                    <div style="color: white; text-align: left;" *ngIf="!displayTicketTypeLegend">
+                        No data to display!
+
+                    </div>
+                    <p-chart class="chart-gap" type="bar" [data]="data" [options]="displayTicketTypeLegend ? horizontalOptions : horizontalOptionsNoData"></p-chart>
+                    <!-- <Chart type="bar" :data="basicData" :options="horizontalOptions" /> -->
+                </div>
+            </div>
+
+            <div class="col-md-6 pt-3">
+                <div class="card p-2">
+                    <h5 class="graphhead-text">By Priority</h5>
+                    <div style="color: white; text-align: left;" *ngIf="!displayPriorityLegend">
+                        No data to display!
+                    </div>
+                    <p-chart type="doughnut" width="302" height="302" [data]="pdata" [options]="displayPriorityLegend ? doughnutOptions: doughnutOptionsNoData" class="chart pchart padding-gapbottom"></p-chart>
+                    <!-- <Chart type="pie" :data="chartData" :options="lightOptions" /> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

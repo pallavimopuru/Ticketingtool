@@ -1,0 +1,248 @@
+<div class="container-fluid main-form">
+  <div class="container py-2">
+    <form>
+      <div class="row py-2">
+        <div class="column-width-1 pt-2">
+          <label for="Department" class="form-label "
+            >Filter by Department</label
+          >
+        </div>
+
+        <div class="column-width-2">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="departmentSelectBox"
+            (change)="onOptionsSelected($event)"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option value="" disabled="Disabled" selected>
+              Select Departments
+            </option>
+
+            <option
+              *ngFor="let item of adminDepartments; let i = index"
+              value="{{ item.departmentID }}"
+            >
+              {{ item.departmentName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-8 policy-main">
+          <a
+            href="https://app.hrone.cloud/app/myprofile/policies"
+            target="_blank"
+            class="policylink"
+            >Policy Link</a
+          >
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <!-- Card 1.............................................. -->
+      <div class="column-card">
+        <div class="card">
+          <div class="row p-2">
+            <div class="col-md-4 pt-1 mobile-col">
+              <img
+                src="../../../../../assets/total-tickets.svg"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-md-8 mobile-col2">
+              <h3 class="ticket-number">{{ ticketStatusCountObject.Total_Tickets }}</h3>
+              <h6 class="ticket-text">Total Tickets</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2.............................................. -->
+      <div class="column-card">
+        <div class="card">
+          <div class="row p-2">
+            <div class="col-md-4 pt-1 mobile-col">
+              <img
+                src="../../../../../assets/resolved-tickets.svg"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-md-8 mobile-col2">
+              <h3 class="ticket-number">{{ ticketStatusCountObject.Resolved }}</h3>
+              <h6 class="ticket-text">Resolved Tickets</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3.............................................. -->
+      <div class="column-card">
+        <div class="card">
+          <div class="row p-2">
+            <div class="col-md-4 pt-1 mobile-col">
+              <img
+                src="../../../../../assets/reopened-tickets.svg"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-md-8 mobile-col2">
+              <h3 class="ticket-number">{{ ticketStatusCountObject.Reopened }}</h3>
+              <h6 class="ticket-text">Reopened Tickets</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4.............................................. -->
+      <div class="column-card">
+        <div class="card">
+          <div class="row p-2">
+            <div class="col-md-4 pt-1 mobile-col">
+              <img
+                src="../../../../../assets/open-tickets.svg"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-md-8 mobile-col2">
+              <h3 class="ticket-number">{{ ticketStatusCountObject.Open }}</h3>
+              <h6 class="ticket-text">Open Tickets</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5.............................................. -->
+      <div class="column-card">
+        <div class="card">
+          <div class="row p-2">
+            <div class="col-md-4 pt-1 mobile-col">
+              <img
+                src="../../../../../assets/in-progressticket.svg"
+                class="img-fluid"
+              />
+            </div>
+            <div class="col-md-8 mobile-col2">
+              <h3 class="ticket-number">{{ ticketStatusCountObject.In_Progress }}</h3>
+              <h6 class="ticket-text">In Progress Tickets</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ..............................Chart Section using primeng chart model......................... -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card p-2">
+          <h5 class="graphhead-text">By Status</h5>
+          <div style="color: white; text-align: left;" *ngIf="!displayStatusLegend">
+            No data to display!
+          </div>
+          <p-chart class="piechart-padding"
+            type="doughnut"
+            [data]="data"
+            [options]="
+              displayStatusLegend ? doughnutOptions : doughnutOptionsNoData
+            "></p-chart>
+          <!-- <div style="color: red;" *ngIf="data?.datasets?.length == 0" >
+                      No data for the selected criteria
+
+                    </div> -->
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card p-2">
+          <h5 class="graphhead-text">By Priority</h5>
+          <div class="customrow">
+            <div class="columnWidth1" *ngIf="displayPriorityLegend">
+              <label for="Department" class="form-label form-label2"
+                >Filter by &nbsp;</label>
+            </div>
+            
+            <div class="columnWidth2" *ngIf="displayPriorityLegend">
+              <select
+                class="optionbar"
+                (change)="onOptionsSelectedByFilterRange($event)"
+              >
+                <!-- <option
+                  *ngFor="let item of FilterRange; let i = index"
+                  [selected] = "item.filterRangeName == 'Current Month' "
+                  value="{{ item.filterRangeID }}"
+                >
+                  {{ item.filterRangeName }}
+                </option> -->
+
+                <option
+                  *ngFor="let item of FilterRange; let i = index"
+                  value="{{ item.filterRangeID }}"
+                >
+                  {{ item.filterRangeName }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="noDataCol2" style="color: white; text-align: left;" *ngIf="!displayPriorityLegend">
+            No data to display!
+          </div>
+          <p-chart 
+            type="bar"
+            [data]="columnPriorityData"
+            [options]="
+              displayPriorityLegend
+                ? priotityOptions
+                : priotityOptionsWithNoData
+            "
+          ></p-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col-md-6">
+        <div class="card p-2">
+          <h5 class="graphhead-text">By Ticket Type</h5>
+          <div style="color: white; text-align: left;" *ngIf="!displayTicketTypeLegend">
+            No data to display!
+          </div>
+          <p-chart
+            type="bar"
+            [data]="bardata"
+            [options]="
+              displayTicketTypeLegend
+                ? horizontalOptions
+                : horizontalOptionsNoData
+            "
+          ></p-chart>
+          <!-- <div style="color: red;" *ngIf="bardata?.datasets?.length == 0" >
+                      No data for the selected criteria
+
+                    </div> -->
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-2">
+          <h5 class="graphhead-text">By Assignee</h5>
+          <div style="color: white; text-align: left;" *ngIf="!displayAssigneeLegend">
+            No data to display!
+          </div>
+          <p-chart
+            type="bar"
+            [data]="columnAssigneeData"
+            [options]="
+              displayAssigneeLegend ? verticalOptions : verticalOptionsNoData
+            "
+          ></p-chart>
+
+          <!-- <p-chart *ngIf="columnAssigneeData?.datasets?.length != 0" type="bar"  [data]="columnAssigneeData"  [options]="verticalOptions"></p-chart> -->
+
+          <!-- <div style="color: red;" *ngIf="columnAssigneeData?.datasets?.length == 0" >
+                      No data for the selected criteria
+
+                    </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

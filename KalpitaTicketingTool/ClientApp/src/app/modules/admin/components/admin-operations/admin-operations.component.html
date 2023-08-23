@@ -1,0 +1,56 @@
+<div class="container-fluid main-form">
+    <div class="container form-bodycolor py-2">
+        <div class="dropdown pd-3">
+            <!-- <p-dropdown [options]="operationOptions" [(ngModel)]="operation" placeholder="Select a Operations"
+                optionLabel="label" (onChange)="onChange($event)"></p-dropdown>
+ -->
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <label for="Priority" class="select-size">Select to add your data </label>
+                        <select class="form-select" [(ngModel)]="operation" (change)="onChange($event)">
+                            <option  value="undefined" selected disabled  >Select data containers</option>
+                            <option *ngFor="let item of operationOptions; let i =index" value={{item.value}}>
+                                {{item.label}} </option>
+                        </select>
+                    </div>
+                </div>
+           
+        </div>
+        <div class="operation-load pt-3">
+            <ng-container *ngIf="operation">
+
+                <div *ngIf="operation == 'TT'">
+                    <app-operations-tickettype></app-operations-tickettype>
+                </div>
+                <div *ngIf="operation == 'DM'">
+                    <app-operations-department></app-operations-department>
+                </div>
+                <div *ngIf="operation == 'PT'">
+                    <app-operations-priority></app-operations-priority>
+                </div>
+
+                <div *ngIf="operation == 'TS'">
+                    <app-operations-ticketstatus></app-operations-ticketstatus>
+                </div>
+                <div *ngIf="operation == 'CG'">
+                    <app-operations-category></app-operations-category>
+                </div>
+                <div *ngIf="operation == 'AR'">
+                    <app-operations-approles></app-operations-approles>
+                </div>
+
+                <div *ngIf="operation == 'AU'">
+                    <app-operations-appusers></app-operations-appusers>
+                </div>
+                <div *ngIf="operation == 'AUR'">
+                    <app-operations-appuserroles></app-operations-appuserroles>
+                </div>
+                <div *ngIf="operation == 'DL'">
+                    <app-operations-distribution></app-operations-distribution>
+                </div>
+            </ng-container>
+
+        </div>
+
+    </div>
+</div>

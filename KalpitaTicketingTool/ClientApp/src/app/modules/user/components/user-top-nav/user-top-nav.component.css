@@ -1,0 +1,259 @@
+.nav-img {
+  width: 130px !important;
+  margin-left: 50px;
+}
+.text-head {
+  font-weight: 600;
+}
+.img-circle {
+  height: 45px;
+  width: 45px;
+  background-color: white;
+  color: #026197;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  font-weight: 600;
+
+}
+.img-size {
+  width: 45px;
+  border-radius: 50%;
+}
+.card-titles {
+  margin: 0px!important;
+  font-size: 0.9rem;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+  background-color: var(--bgNavitem);
+  color: var( --MainTextColor);
+}
+.dropdown-items-name {
+  text-decoration: none;
+  color:  var( --MainTextColor);
+  font-size: 16px;
+}
+.logoutcolr {
+  background-color: var(--bgNavitem);
+    color: var( --MainTextColor);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+}
+.row-gap {
+  margin-right: 0px;
+  margin-left: 0px;
+  border-top: 1px solid lightgrey;
+}
+.padding-gap {
+  padding: 20px 2px 20px 2px!important;
+  background-color: var(--MainBg);  
+}
+.dropdown-items-email {
+  text-decoration: none;
+  color:  var( --MainTextColor);
+  font-size: 14px;
+}
+.dragleftmenu {
+  margin-left: -16rem;
+}
+.text-sizes {
+  color:  var( --MainTextColor);
+  margin-bottom: 0.5rem;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.img-circle-text{
+  height: 45px;
+  width: 45px;
+  background-color:  var( --MainTextColor);
+  color: var(--MainBg);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+  font-weight: 600;
+  border:1px solid var(--MainBg);
+}
+
+/* .text-insidecircle{
+    padding: 10px 10px 10px 10px;
+  } */
+
+
+
+
+
+.toggle-padding {
+  padding-top: 1rem;
+  cursor: pointer;
+}
+.clipstyle {
+  clip-path: polygon(0% 0%, 0% 342%, 100% 0%);
+  background-color:var(--ClipimgBg);
+  width: 374px;
+}
+.eleoota-head {
+  font-weight: 600;
+}
+.menu-color {
+  color: var( --MainTextColor);
+}
+.navclass {
+  background-color: var(--MainBg);
+    color: var( --MainTextColor);
+  /* box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75); */
+}
+
+.buttonfloat {
+  margin-right: 4rem;
+}
+
+.dropdown-menu {
+  padding-bottom: 0rem !important;
+  padding-top: 0rem !important;
+  cursor: pointer;
+}
+
+.navbar {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.container-fluid {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+  .dropdown-menu {
+    font-size: 0.8rem;
+  }
+  .dropdown-column{
+    text-align: center;
+    padding: 10px 0px;
+}
+.menu-cardbody{
+  margin-left: 7rem;
+}
+  .textdate {
+    display: none;
+  }
+  .dragleftmenu {
+    margin-left: -6rem;
+  }
+  .nav-img {
+    width: 100px !important;
+    margin-left: 0px;
+    padding: 5px;
+  }
+  .clipstyle {
+    clip-path: unset;
+    background-color: var(--ClipimgBg);
+    width: unset;
+  }
+  .menu-color{
+    color: var( --MainTextColor);
+}
+.navclass{
+    color: var( --MainTextColor);
+    background-color:var(--MainBg) ;
+}
+  .text-head {
+    text-align: center;
+  }
+  .buttonfloat {
+    justify-content: center;
+    margin-right: 0rem;
+  }
+  .img-circle {
+    background-color: var(--MainBg);
+    color: var( --MainTextColor);  
+  }
+  .padding-gap {
+    text-align: center;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .dragleftmenu {
+    margin-left: -6rem;
+  }
+  .dropdown-column{
+    text-align: center;
+    padding: 10px 0px;
+    width: 100%;
+}
+.text-sizes{
+  width:350px;
+}
+.menu-cardbody{
+  margin-left: 18rem;
+}
+.userhead-column{
+  width: 100%;
+}
+  .nav-img {
+    width: 100px !important;
+    margin-left: 0px;
+    padding: 5px;
+  }
+  .clipstyle {
+    clip-path: unset;
+    background-color: var(--ClipimgBg);
+    width: unset;
+  }
+  .menu-color{
+    color: var( --MainTextColor);
+}
+.navclass{
+    color: var( --MainTextColor);
+    background-color:var(--MainBg) ;
+}
+  .text-head {
+    text-align: center;
+  }
+  .buttonfloat {
+    justify-content: center;
+    margin-right: 0rem;
+  }
+  .img-circle {
+    background-color: var(--MainBg);
+    color: var( --MainTextColor);  
+  }
+}
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .clipstyle {
+    width: 245px;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1300px) {
+  .clipstyle {
+    width: 300px;
+  }
+}
+@media screen and (min-width: 1301px) and (max-width: 1400px) {
+  .clipstyle {
+    width: 325px;
+  }
+}
+@media screen and (min-width: 1401px) and (max-width: 1590px) {
+  .clipstyle {
+    width: 350px;
+  }
+}
+@media screen and (min-width: 1700px) and (max-width: 1900px) {
+  .clipstyle {
+    width: 422px;
+  }
+}
+@media screen and (min-width: 1900px) and (max-width: 2000px) {
+  .clipstyle {
+    width: 455px;
+  }
+}
+@media screen and (min-width: 2000px) and (max-width: 2570px) {
+  .clipstyle {
+    width: 595px;
+  }
+}

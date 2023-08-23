@@ -1,0 +1,87 @@
+<div class="card">
+    <form [formGroup]="DistributionForm">
+        <p-table [columns]="columnHeader" #docDataTable [lazy]="true" [loading]="loading" [value]="operations" dataKey="Serialnumber" editMode="row" responsiveLayout="scroll" [scrollable]="true" scrollHeight="400px">
+            <ng-template pTemplate="caption">
+                <div class="table-header">
+                    <!-- <button pButton type="button custom-button" label="Add" (click)="addRow()"></button> -->
+                    <button class="btn custom-button" (click)="addRow()">Add</button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr class="header-row">
+                    <th *ngFor="let col of columns"  [ngStyle]="{'width': col.width  , 'max-width' : col.width }">
+                        {{col.header}}
+                    </th>
+                    <th style="width: 200px;max-width: 200px;text-align:center">
+                        Action
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-operations let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="operations">
+                    <td style="width: 150px;max-width: 150px;">
+                        <p-cellEditor class="cellgap">
+                            <ng-template pTemplate="input">
+                                {{ri + 1 }}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations.Serialnumber}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td style="width: 400px;max-width: 400px;">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="distributionListEmail" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations.distributionListEmail }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="width: 350px;max-width: 350px;">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" formControlName="distributionListDescription" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations?.distributionListDescription }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td style="width: 200px;max-width: 200px;">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <select class="form-select" formControlName="status" [(ngModel)]="defaultStatus">
+                                    <!-- <option value="" selected disabled>Select status</option> -->
+                                    <option *ngFor="let item of statusOptions; let i =index" value={{item.value}}>
+                                        {{item.label}}
+                                    </option>
+                                </select>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{operations?.status == "A" ? "Active" : "Deactive" }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td style="width: 200px;max-width: 200px;">
+                        <button *ngIf="!editing && alreadyEditIsOpen" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="EditOpen()"></button>
+
+                        <button *ngIf="!editing && !alreadyEditIsOpen" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(operations)" class="p-button-rounded p-button-text"></button>
+
+                        <button *ngIf="editing && this.DistributionForm.valid" pButton pRipple type="button" icon="pi pi-check" (click)="onRowEditSave()" pSaveEditableRow class="p-button-rounded p-button-text p-button-success mr-2"></button>
+
+                        <button *ngIf="editing && !this.DistributionForm.valid" pButton pRipple type="button" icon="pi pi-check" (click)="onRowEditSave()" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+
+                        <button *ngIf="editing" pButton pRipple type="button" icon="pi pi-times" (click)="onRowEditCancel()" pCancelEditableRow class="p-button-rounded p-button-text p-button-danger"></button>
+
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </form>
+</div>

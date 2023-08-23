@@ -1,0 +1,213 @@
+<div class="container-fluid ticket-history">
+    <div class="tablestart py-3">
+        <div class="container containercolor cont-scroll">
+            <div class="row pt-3">
+                <!-- <div class="col-md-1 ">
+                    <h5>All Tickets</h5>
+                </div>
+                <div class="col-md-2">
+                    From : <input type="date" [value]="TodayDate">
+                </div>
+                <div class="col-md-2">
+                    To : <input type="date" [value]="TodayDate">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="export-btn">EXPORT</button>
+                </div>
+                <div class="col-md-4">
+                    <input type="search" placeholder="Search by Title or Status" aria-label="Search" class="form-control">
+                </div> -->
+                <div class="col1">
+                    <h6 class="alltickets">All Tickets</h6>
+                </div>
+                <div class="col2">
+                    <span class="fromTofont">From : </span>
+                    <!-- <input type="date" ([ngModel])="startdate"  class="widthinput"> -->
+                    <p-calendar [(ngModel)]="startdate" [defaultDate]='defaultDate' [maxDate]="defaultDate"
+                        placeholder="mm/dd/yyyy" dateFormat="mm/dd/yy" inputId="dateformat" [readonlyInput]="true">
+                    </p-calendar>
+                </div>
+                <div class="col3">
+                    <span class="fromTofont">To : </span>
+                    <!-- <input type="date" ([ngModel])="enddate"  class="widthinput"> -->
+                    <p-calendar [(ngModel)]="enddate" class="todatecalendar" [defaultDate]='defaultDate'
+                        [maxDate]="defaultDate" [readonlyInput]="true" placeholder="mm/dd/yyyy" dateFormat="mm/dd/yy"
+                        inputId="dateformat"></p-calendar>
+                </div>
+                <div class="col4">
+                    <button type="button" class="export-btn widthinput" (click)="exportValue(startdate,enddate)">
+                        EXPORT
+                    </button>
+                </div>
+                <div class="col5">
+                    <!-- <input type="search" placeholder="Search by Title or Status" aria-label="Search" class="form-control" [(ngModel)]="serchTerm" [ngModelOptions]="{standalone: true}"> -->
+                    <!-- <input type="search" pInputText size="50" class="form-control searchwidth"
+                        placeholder="Global search" #textInput type="text"
+                        (input)="tableData.filterGlobal(textInput.value, 'startsWith')"> -->
+
+                    <input type="search" pInputText size="50" class="form-control searchwidth"
+                        placeholder="Global search" #textInput type="text"
+                        (keydown.enter)="callDataGlobally(textInput.value)" (keydown.delete)="callDataGlobally(null)"
+                        (keyup.backspace)="callDataGlobally(textInput.value)">
+                </div>
+            </div>
+            <div class="row py-3">
+                <div class="col-md-12">
+                    <!-- <table class="table table-striped table-hover">
+                        <thead>
+                            <tr class="tablehead">
+                                
+                                <th scope="col">Ticket ID</th>
+                                <th scope="col">Department</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Title</th>
+                                
+                                <th scope="col">Created On</th>
+                                <th scope="col">Priority</th>
+                                <th scope="col">Assigned To</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Resolved By</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="tablebody">
+                            <tr *ngFor="let item of tickets | filtertickets:serchTerm paginate: {itemsPerPage: 10 , currentPage : p}">
+                                <td><a routerLink="/user/ticket-history/{{item.ticketID}}">{{item.ticketDupID}}</a></td>
+                                <td>{{item.departmentName}}</td>
+                                <td>{{item.categoryName}}</td>
+                                <td>{{item.ticketTitle}}</td>
+                                <td>{{item.createdDate}}<br></td>
+                                <td>{{item.priorityType}}</td>
+                                <td>{{item.assignedTo}}</td>
+                                <td>{{item.ticketStatus}}</td>
+                                <td>{{item.resolvedDate}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+
+                    <p-table [value]="tickets" #tableData [paginator]="true" [rows]="searchQueryGrid.defaultPageSize"
+                        [showCurrentPageReport]="true" [totalRecords]="searchQueryGrid.totalRowCount"
+                        [first]="searchQueryGrid.offset" [lazy]="true" (onPage)="paginate($event)"
+                        [globalFilterFields]="['ticketTitle','ticketStatus','departmentName','createdDate','priorityType','assignedTo','categoryName','ticketID']">
+                        <ng-template pTemplate="header">
+                            <tr class="tablehead">
+                                <!-- <th scope="col"><i class="ri-arrow-up-fill icoup"></i> Ticket ID</th> -->
+                                <th style="width: 8%;" #ticketId  pSortableColumn="ticketID" scope="col">
+                                    
+                                    <p class="margin-gap" >
+                                        <span field="ticketID" (click)="getSortColumnName(ticketId.innerText)">TicketID<p-sortIcon field="ticketID" (click)="getSortColumnName(ticketId.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- TicketID
+                                    <p-sortIcon field="ticketID" (click)="getSortColumnName(ticketId.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #departmentName pSortableColumn="departmentName" scope="col">
+                                    <p class="margin-gap">
+                                        <span field="departmentName" (click)="getSortColumnName(departmentName.innerText)">Department<p-sortIcon field="departmentName" (click)="getSortColumnName(departmentName.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- CreatedBy
+                                    <p-sortIcon field="createdByName" (click)="getSortColumnName(createdby.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #category pSortableColumn="categoryName" scope="col">
+                                    <p class="margin-gap" >
+                                        <span field="categoryName" (click)="getSortColumnName(category.innerText)">Category<p-sortIcon field="categoryName" (click)="getSortColumnName(category.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- Category
+                                    <p-sortIcon field="categoryName" (click)="getSortColumnName(category.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 19%;" #title pSortableColumn="ticketTitle" scope="col">
+                                    <p class="margin-gap" >
+                                        <span field="ticketTitle" (click)="getSortColumnName(title.innerText)">Title<p-sortIcon field="ticketTitle" (click)="getSortColumnName(title.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- Title
+                                    <p-sortIcon field="ticketTitle" (click)="getSortColumnName(title.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <!-- <th scope="col"><i class="ri-arrow-up-fill"></i> Created On</th> -->
+                                <th style="width: 10%;" #createdon pSortableColumn="createdDate" scope="col">
+                                    <p class="margin-gap" >
+                                        <span field="createdDate" (click)="getSortColumnName(createdon.innerText)">CreatedOn<p-sortIcon field="createdDate" (click)="getSortColumnName(createdon.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- CreatedOn
+                                    <p-sortIcon field="createdDate" (click)="getSortColumnName(createdon.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 10%;" #priority scope="col">
+                                    <div class="statusCol">
+                                        <p class="margin-gap" pSortableColumn="priorityType">
+                                            <span (click)="getSortColumnName(priority.innerText)" field="priorityType">Priority<p-sortIcon (click)="getSortColumnName(priority.innerText)" field="priorityType"></p-sortIcon></span>
+                                        </p>
+                                        <p class="margin-gap" >
+                                            <app-user-ticket-filter (filterData)="getData($event, priority.innerText)"
+                                            (clearFilterEmitter)="clearFilter($event, priority.innerText)">
+                                        </app-user-ticket-filter>
+                                </p>
+                                 </div>
+                                    <!-- Priority<span pSortableColumn="priorityType">
+                                        <p-sortIcon field="priorityType"
+                                            (click)="getSortColumnName(priority.innerText)">
+                                        </p-sortIcon>
+                                    </span>
+                                    <app-user-ticket-filter (filterData)="getData($event, priority.innerText)"
+                                        (clearFilterEmitter)="clearFilter($event, priority.innerText)">
+                                    </app-user-ticket-filter> -->
+                                </th>
+                                <th style="width: 14%;" #assignedto scope="col" pSortableColumn="assignedTo">
+                                    <p class="margin-gap" >
+                                        <span field="assignedTo" (click)="getSortColumnName(assignedto.innerText)">CreatedOn<p-sortIcon field="assignedTo" (click)="getSortColumnName(assignedto.innerText)"></p-sortIcon></span>
+                                    </p>
+                                    <!-- AssignedTo
+                                    <p-sortIcon field="assignedTo" (click)="getSortColumnName(assignedto.innerText)">
+                                    </p-sortIcon> -->
+                                </th>
+                                <th style="width: 30%;" #status scope="col">
+                                    <div class="statusCol">
+                                        <p class="margin-gap" pSortableColumn="ticketStatus">
+                                            <span (click)="getSortColumnName(status.innerText)" field="ticketStatus" >Status<p-sortIcon (click)="getSortColumnName(status.innerText)" field="ticketStatus"></p-sortIcon></span>
+                                        </p>
+                                        <p class="margin-gap" >
+                                            <app-user-ticket-filter (filterData)="getData($event, status.innerText)"
+                                        (clearFilterEmitter)="clearFilter($event, status.innerText)">
+                                    </app-user-ticket-filter>
+                                </p>
+                                    </div>
+                                    <!-- Status <span pSortableColumn="ticketStatus">
+                                        <p-sortIcon field="ticketStatus" (click)="getSortColumnName(status.innerText)">
+                                        </p-sortIcon>
+                                    </span>
+                                    <app-user-ticket-filter (filterData)="getData($event, status.innerText)"
+                                        (clearFilterEmitter)="clearFilter($event, status.innerText)">
+                                    </app-user-ticket-filter> -->
+                                </th>
+                                <!-- <th style="width: 10%;" pSortableColumn="resolvedBy" scope="col">Resolved By
+                                    <p-sortIcon field="resolvedBy"></p-sortIcon>
+                                </th> -->
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td><a routerLink="/user/ticket-history/{{item.ticketID}}">{{item.ticketDupID}}</a></td>
+                                <td>{{item.departmentName}}</td>
+                                <td>{{item.categoryName}}</td>
+                                <td>{{item.ticketTitle}}</td>
+                                <td>{{item.createdDate}}<br></td>
+                                <td>{{item.priorityType}}</td>
+                                <td>{{item.assignedTo}}</td>
+                                <td>{{item.ticketStatus}}</td>
+                                <!-- <td>{{item.resolvedBy}}</td> -->
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+
+                </div>
+            </div>
+            <!-- <pagination-controls (pageChange)="p = $event" class="text-center paging-textsize"></pagination-controls> -->
+        </div>
+    </div>
+</div>
